@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">WebDav</string>
+    <string name="hello" translatable="false">Hello World, ViewFlowExample!</string>
+    <string name="title_title" translatable="false">TitleFlowIndicator</string>
+    <string name="app_name_file_dialog">File dialog</string>
+    <string name="location">Location</string>
+    <string name="cant_read_folder">folder can\'t be read!</string>
+    <string name="cant_create_folder">folder can\'t be created!</string>
+    <string name="nnew">New</string>
+    <string name="select">Select</string>
+    <string name="file_name">Name:</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Save</string>
+    <string name="no_data">No Data</string>
+    <string name="err">Error</string>
+    <string name="str_start">Press button to start WebDAV server</string>
+    <string name="str_stop">Press button to stop WebDAV server</string>
+    <string name="str_server_conf">WebDAV server available on:</string>
+    <string name="server">Server</string>
+    <string name="about">About</string>
+    <string name="version">Version 1.17</string>
+    <string name="warning">Libraries used by this program:\nMilton WebDAV v1.7.2 and Berry web server v1.5. Apache2 License.\nAndroid viewflow pakerfeldt (01/Nov/2011). Apache2 License.</string>
+    <string name="userMessage">Thanks for using my application. Please rate and comment or email me theolivetreesoftware@gmail.com with your suggestions to make it better</string>
+    <string name="thanksTo">Special thanks to: Beatriz Vera, Peter Ulrich, Gabor Fodor, Manuela Merino García and Anna Rainieri</string>
+    <string name="ok">OK</string>
+    <string name="notConnect">Please connect to a network and check network interface settings before running the server</string>
+    <string name="errorRunServer">Error while running server. Probably configuration is wrong, try to restart it.</string>
+    <string name="service_started">WebDAV server started.</string>
+    <string name="notification_started_title">WebDAV server</string>
+    <string name="notification_started_text">WebDAV server started.</string>
+    <string name="conf_username">Username:</string>
+    <string name="conf_userpass">Password:</string>
+    <string name="conf_home_directory">Home directory:</string>
+    <string name="conf_password_disabled">Password disabled.</string>
+    <string name="menu_preference">Settings</string>
+    <string name="pref_port_title">Port</string>
+    <string name="pref_port_message">Port used by WebDAV server</string>
+    <string name="pref_port_summary">Port used by WebDAV server</string>
+    <string name="pref_password_title">Use password</string>
+    <string name="pref_password_summary">Username and password needed to connect to server</string>
+    <string name="pref_username_title">User name</string>
+    <string name="pref_username_message">User name</string>
+    <string name="pref_username_summary">User name</string>
+    <string name="pref_userpass_title">User password</string>
+    <string name="pref_userpass_message">Enter user password</string>
+    <string name="pref_userpass_summary">User password</string>
+    <string name="pref_homedir_title">Home directory</string>
+    <string name="pref_homedir_message">Select home directory used by WebDAV server</string>
+    <string name="pref_homedir_summary">Home directory used by WebDAV server</string>
+    <string name="pref_interfaces_title">Network interface</string>
+    <string name="pref_interfaces_message">Select network interface where server listens for connections</string>
+    <string name="pref_interfaces_summary">Network interface where server listens for clients to connect</string>
+    <string name="pref_resetprefs_title">Reset configuration</string>
+    <string name="pref_resetprefs_summary">Click to reset application configuration to its initial values</string>
+    <string name="pref_lock_title">Lock mode</string>
+    <string name="pref_lock_message">Lock used to keep data connection alive while server is running</string>
+    <string name="pref_lock_summary">Lock used to keep data connection alive while server is running</string>
+    <string name="pref_foreground_title">High priority service</string>
+    <string name="pref_foreground_message">Run as foreground service</string>
+    <string name="pref_foreground_summary">Service will not be killed under low memory conditions</string>
+    <string name="pref_customfolder_title">Custom folder</string>
+    <string name="pref_showcredentials_title">Show server details</string>
+    <string name="pref_showcredentials_summary">Show username, password, home folder, etc. in main screen</string>
+
+</resources>

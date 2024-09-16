@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="home_dir_values">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+    </array>
+    <array name="home_dir">
+        <item>Root (/)</item>
+        <item>SdCard</item>
+        <item>Custom folder</item>
+    </array>
+    <array name="home_dir_values_api8">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </array>
+    <array name="home_dir_api8">
+        <item>Root (/)</item>
+        <item>SdCard</item>
+        <item>DCIM</item>
+        <item>Custom folder</item>
+    </array>
+    <array name="home_dir_values_api19">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </array>
+    <array name="home_dir_api19">
+        <item>Root (/)</item>
+        <item>SdCard</item>
+        <item>DCIM</item>
+        <item>Custom folder</item>
+        <item>Ext. SdCard</item>
+    </array>
+    <array name="interfaces_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>3</item>
+    </array>
+    <array name="interfaces">
+        <item>WIFI</item>
+        <item>Ethernet</item>
+        <item>Mobile network</item>
+        <item>Bluetooth PAN</item>
+        <item>Loopback (127.0.0.1)</item>
+    </array>
+    <array name="lock_values">
+        <item>0</item>
+        <item>1</item>
+    </array>
+    <array name="lock">
+        <item>SCREEN_DIM_WAKE_LOCK</item>
+        <item>WIFI_MODE_FULL</item>
+    </array>
+    <array name="lock_values_api12">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </array>
+    <array name="lock_api12">
+        <item>SCREEN_DIM_WAKE_LOCK</item>
+        <item>WIFI_MODE_FULL</item>
+        <item>WIFI_MODE_FULL_HIGH_PERF</item>
+    </array>
+</resources>

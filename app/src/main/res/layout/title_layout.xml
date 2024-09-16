@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/titleParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.xinglan.webdavserver.widget.viewflow.TitleFlowIndicator
+            android:id="@+id/view_flow_indic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:clipPadding="5dp"
+            app:footerColor="#ffffc445"
+            app:footerLineHeight="2dp"
+            app:footerTriangleHeight="10dp"
+            app:selectedColor="#ffffc445"
+            app:selectedSize="12dp"
+            app:textColor="#ffffffff"
+            app:textSize="11sp"
+            app:titlePadding="10dp" />
+    </LinearLayout>
+
+    <com.xinglan.webdavserver.widget.viewflow.ViewFlow
+        android:id="@+id/view_flow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:duplicateParentState="true" />
+</LinearLayout>

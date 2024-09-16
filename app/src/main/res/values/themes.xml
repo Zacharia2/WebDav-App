@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MainTheme" parent="@android:style/Theme.Black.NoTitleBar" />
+    <style name="PrefsTheme" parent="@android:style/Theme.Black" />
+    <style name="AlertDialogTheme" parent="@android:style/Theme.Translucent.NoTitleBar" />
+    <style name="Theme.WebdavServer" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
