@@ -11,17 +11,14 @@ import xyz.realms.mws.ui.widget.viewflow.TitleProvider;
 
 public class WebdavAdapter extends BaseAdapter implements TitleProvider {
     private static final int VIEW1 = 0;
-    private static final int VIEW2 = 1;
-    private static final int VIEW_MAX_COUNT = 2;
-    private final int[] names = {R.string.server, R.string.about};
+    private static final int VIEW_MAX_COUNT = 1;
+    private final int[] names = {R.string.server};
     private final Context context;
     private final LayoutInflater mInflater;
     private int res1;
-    private int res2;
 
-    public WebdavAdapter(Context context, int inflateRes1, int inflateRes2) {
+    public WebdavAdapter(Context context, int inflateRes1) {
         this.res1 = inflateRes1;
-        this.res2 = inflateRes2;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.context = context;
     }
@@ -53,8 +50,6 @@ public class WebdavAdapter extends BaseAdapter implements TitleProvider {
             switch (view) {
                 case VIEW1:
                     return this.mInflater.inflate(this.res1, null);
-                case VIEW2:
-                    return this.mInflater.inflate(this.res2, null);
                 default:
                     return convertView;
             }

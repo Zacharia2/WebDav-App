@@ -67,7 +67,7 @@ public class MainActivity extends Activity implements CustomResultReceiver.Recei
         LinearLayout bg = findViewById(R.id.titleParent);
         bg.getBackground().setDither(true);
         this.viewFlow = findViewById(R.id.view_flow);
-        WebdavAdapter adapter = new WebdavAdapter(this, R.layout.main_common, R.layout.about);
+        WebdavAdapter adapter = new WebdavAdapter(this, R.layout.main_common);
         this.viewFlow.setAdapter(adapter);
         TitleFlowIndicator indicator = findViewById(R.id.view_flow_indic);
         indicator.setTitleProvider(adapter);
