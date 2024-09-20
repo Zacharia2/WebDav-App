@@ -8,7 +8,6 @@ import com.ettrema.berry.simple.SimpletonServer;
 import com.ettrema.common.Service;
 import com.ettrema.http.fs.FileSystemResourceFactory;
 import com.ettrema.http.fs.SimpleLockManager;
-import com.xinglan.webdavserver.utils.Prefs;
 
 import java.io.File;
 import java.util.ArrayList;

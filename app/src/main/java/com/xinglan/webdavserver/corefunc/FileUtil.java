@@ -1,4 +1,4 @@
-package com.xinglan.webdavserver.utils;
+package com.xinglan.webdavserver.corefunc;
 
 import android.content.Context;
 

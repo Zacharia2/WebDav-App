@@ -29,8 +29,8 @@ import com.xinglan.webdavserver.corefunc.BerryUtil;
 import com.xinglan.webdavserver.corefunc.Helper;
 import com.xinglan.webdavserver.intent.WebdavService;
 import com.xinglan.webdavserver.intent.WidgetWebDavReceiver;
-import com.xinglan.webdavserver.utils.CustomResultReceiver;
-import com.xinglan.webdavserver.utils.Net;
+import com.xinglan.webdavserver.intent.CustomResultReceiver;
+import com.xinglan.webdavserver.corefunc.Net;
 import com.xinglan.webdavserver.widget.viewflow.TitleFlowIndicator;
 import com.xinglan.webdavserver.widget.viewflow.ViewFlow;
 

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.xinglan.webdavserver.utils.Net;
+import com.xinglan.webdavserver.corefunc.Net;
 
 public class AlertDialogActivity extends Activity {
     public int cancel;

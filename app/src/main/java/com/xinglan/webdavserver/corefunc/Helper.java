@@ -8,9 +8,7 @@ import com.ettrema.http.fs.NullSecurityManager;
 import com.ettrema.http.fs.SimpleSecurityManager;
 import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.intent.WebdavService;
-import com.xinglan.webdavserver.utils.CustomResultReceiver;
-import com.xinglan.webdavserver.utils.Net;
-import com.xinglan.webdavserver.utils.Prefs;
+import com.xinglan.webdavserver.intent.CustomResultReceiver;
 
 import org.apache.commons.io.IOUtils;
 
