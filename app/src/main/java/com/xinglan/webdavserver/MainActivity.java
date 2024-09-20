@@ -21,10 +21,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.xinglan.webdavserver.activities.AboutActivity;
-import com.xinglan.webdavserver.activities.PrefsActivity;
-import com.xinglan.webdavserver.activities.WebdavAdapter;
-import com.xinglan.webdavserver.activities.WebdavServerApp;
+import com.xinglan.webdavserver.activity.AboutActivity;
+import com.xinglan.webdavserver.activity.PrefsActivity;
+import com.xinglan.webdavserver.activity.WebdavAdapter;
+import com.xinglan.webdavserver.activity.WebdavServerApp;
 import com.xinglan.webdavserver.corefunc.BerryUtil;
 import com.xinglan.webdavserver.corefunc.Helper;
 import com.xinglan.webdavserver.intent.WebdavService;

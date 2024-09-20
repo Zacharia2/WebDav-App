@@ -1,4 +1,4 @@
-package com.xinglan.webdavserver.activities;
+package com.xinglan.webdavserver.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Application;

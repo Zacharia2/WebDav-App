@@ -1,4 +1,4 @@
-package com.xinglan.webdavserver.activities;
+package com.xinglan.webdavserver.activity;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;

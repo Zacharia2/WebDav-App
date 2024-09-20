@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.xinglan.webdavserver.MainActivity;
-import com.xinglan.webdavserver.activities.WebdavServerApp;
+import com.xinglan.webdavserver.activity.WebdavServerApp;
 import com.xinglan.webdavserver.corefunc.BerryUtil;
 import com.xinglan.webdavserver.corefunc.Helper;
 
