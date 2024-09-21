@@ -39,6 +39,22 @@ public class WebdavService extends Service {
         return server;
     }
 
+    public static class WebdavBinder extends Binder {
+        public String configurationString;
+
+        public WebdavBinder() {
+            this.configurationString = null;
+        }
+
+        public BerryUtil getServer() {
+            return WebdavService.server;
+        }
+
+        public void setServer(BerryUtil par) {
+            WebdavService.server = par;
+        }
+    }
+
     public static void updateWidgets(Context context, String updateAction, boolean startedFromWidget, boolean startOk) {
         Intent intentUpdate = new Intent();
         intentUpdate.setAction(updateAction);
@@ -136,7 +152,7 @@ public class WebdavService extends Service {
         notification = new Notification.BigTextStyle(new Notification.Builder(this).setTicker(getString(notificationTextId)).setContentTitle(getString(notificationStartedTitleId)).setContentText(ipDetail).setSmallIcon(notificationIconId).setContentIntent(intent)).bigText(ipDetail).build();
         notification.flags |= 34;
         if (startForeground) {
-            startForeground(1, notification);
+            startForeground(NOTIFICATION_STARTED_ID, notification);
         } else {
             this.notifyManager.notify(1, notification);
         }
@@ -185,22 +201,5 @@ public class WebdavService extends Service {
         }
         handleStart(intent, flags, startId, R.string.service_started, R.drawable.on, R.string.notification_started_title, R.string.notification_started_text);
         return Service.START_REDELIVER_INTENT;
-    }
-
-
-    public static class WebdavBinder extends Binder {
-        public String configurationString;
-
-        public WebdavBinder() {
-            this.configurationString = null;
-        }
-
-        public BerryUtil getServer() {
-            return WebdavService.server;
-        }
-
-        public void setServer(BerryUtil par) {
-            WebdavService.server = par;
-        }
     }
 }

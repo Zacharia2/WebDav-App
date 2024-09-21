@@ -29,10 +29,11 @@ public class Prefs {
     public static final String PREF_SHOWCREDENTIALS = "prefShowCredentials";
     public static final String PREF_USERNAME = "prefUsername";
     public static final String PREF_USERPASS = "prefUserpass";
+    public static final String PREF_FILENAME = "pref_kv";
 
     public static int getPort(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             return Integer.parseInt(pref.getString(PREF_PORT, DEFAULT_PORT));
         } catch (Exception e) {
             return Integer.parseInt(DEFAULT_PORT);
@@ -41,7 +42,7 @@ public class Prefs {
 
     public static String getUserName(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             return pref.getString(PREF_USERNAME, "webdav");
         } catch (Exception e) {
             return "webdav";
@@ -50,7 +51,7 @@ public class Prefs {
 
     public static String getUserPass(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             return pref.getString(PREF_USERPASS, "webdav");
         } catch (Exception e) {
             return "webdav";
@@ -60,7 +61,7 @@ public class Prefs {
     public static String getHomeDir(Context context) {
         String ext;
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             String prefHomeDir = pref.getString(PREF_HOMEDIR, DEFAULT_HOMEDIR);
             if (prefHomeDir.equals(DEFAULT_HOMEDIR)) {
                 ext = String.valueOf(Environment.getExternalStorageDirectory());
@@ -86,7 +87,7 @@ public class Prefs {
 
     public static boolean isHomeDirCustomDir(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             String prefHomeDir = pref.getString(PREF_HOMEDIR, DEFAULT_HOMEDIR);
             return prefHomeDir.equals("3");
         } catch (Exception e) {
@@ -100,7 +101,7 @@ public class Prefs {
 
     public static boolean getPasswordEnabled(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             return pref.getBoolean(PREF_PASSWORD, false);
         } catch (Exception e) {
             return false;
@@ -109,7 +110,7 @@ public class Prefs {
 
     public static int getInterfaces(Context context) {
         try {
-            SharedPreferences pref = context.getSharedPreferences("pref_kv",Context.MODE_PRIVATE);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             String prefInterfaces = pref.getString(PREF_INTERFACES, "0");
             if (prefInterfaces.equals("0")) {
                 return Net.ADDR_WIFI_ALL;
@@ -131,7 +132,7 @@ public class Prefs {
 
     public static int getLock(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             String prefInterfaces = pref.getString(PREF_LOCK, "0");
             if (prefInterfaces.equals("0")) {
                 return 0;
@@ -147,7 +148,7 @@ public class Prefs {
 
     public static boolean getForeground(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             return pref.getBoolean(PREF_FOREGROUND, true);
         } catch (Exception e) {
             return true;
@@ -156,7 +157,7 @@ public class Prefs {
 
     public static String getCustomFolder(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             String folder = pref.getString(PREF_CUSTOMFOLDER, DEFAULT_CUSTOMFOLDER);
             File theDir = new File(folder);
             if (theDir.exists()) {
@@ -172,7 +173,7 @@ public class Prefs {
 
     public static void setCustomFolder(Context context, String folder) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
             editor.putString(PREF_CUSTOMFOLDER, folder);
             editor.apply();
@@ -182,7 +183,7 @@ public class Prefs {
 
     public static boolean getShowCredentials(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
             return pref.getBoolean(PREF_SHOWCREDENTIALS, true);
         } catch (Exception e) {
             return true;
