@@ -10,7 +10,6 @@ import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.corefunc.FileUtil;
 import com.xinglan.webdavserver.corefunc.Prefs;
 
-/* loaded from: classes.dex */
 public class PrefsActivity extends PreferenceActivity {
     public static final int PREFERENCE_ACTIVITY = 0;
     public static final int PREF_RESULT_NONE = 1;

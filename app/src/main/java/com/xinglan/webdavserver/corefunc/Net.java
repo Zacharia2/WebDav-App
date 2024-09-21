@@ -58,13 +58,13 @@ public class Net {
         ArrayList<String> retValue = new ArrayList<>();
         try {
             String wifiAddr = getWifiIpAddress(context);
-            if (((mask & 1) == 1 || (mask & 32) == 32) && wifiAddr != null) {
+            if (((mask & ADDR_WIFI) == ADDR_WIFI || (mask & ADDR_WIFI_ALL) == ADDR_WIFI_ALL) && wifiAddr != null) {
                 retValue.add(wifiAddr);
             }
             Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
             while (en.hasMoreElements()) {
                 NetworkInterface intf = en.nextElement();
-                if (((mask & 2) == 2 && intf.getDisplayName().startsWith("eth")) || (((mask & 4) == 4 && intf.getDisplayName().startsWith("pdp")) || (((mask & 4) == 4 && intf.getDisplayName().startsWith("rmnet")) || (((mask & 8) == 8 && intf.getDisplayName().startsWith("lo")) || (((mask & 16) == 16 && intf.getDisplayName().startsWith("bt-pan")) || (((mask & 32) == 32 && intf.getDisplayName().startsWith("wl")) || mask == 255)))))) {
+                if (((mask & ADDR_ETH) == ADDR_ETH && intf.getDisplayName().startsWith("eth")) || (((mask & ADDR_MOBILE) == ADDR_MOBILE && intf.getDisplayName().startsWith("pdp")) || (((mask & ADDR_MOBILE) == ADDR_MOBILE && intf.getDisplayName().startsWith("rmnet")) || (((mask & ADDR_LOCAL) == ADDR_LOCAL && intf.getDisplayName().startsWith("lo")) || (((mask & ADDR_BLUETOOH_PAN) == ADDR_BLUETOOH_PAN && intf.getDisplayName().startsWith("bt-pan")) || (((mask & ADDR_WIFI_ALL) == ADDR_WIFI_ALL && intf.getDisplayName().startsWith("wl")) || mask == ADDR_ALL)))))) {
                     Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses();
                     while (enumIpAddr.hasMoreElements()) {
                         InetAddress inetAddress = enumIpAddr.nextElement();
@@ -111,7 +111,7 @@ public class Net {
         if (ip == 0) {
             return null;
         }
-        return String.format("%d.%d.%d.%d", Integer.valueOf(ip & 255), Integer.valueOf((ip >> 8) & 255), Integer.valueOf((ip >> 16) & 255), Integer.valueOf((ip >> 24) & 255));
+        return String.format("%d.%d.%d.%d", Integer.valueOf(ip & ADDR_ALL), Integer.valueOf((ip >> ADDR_LOCAL) & ADDR_ALL), Integer.valueOf((ip >> 16) & ADDR_ALL), Integer.valueOf((ip >> 24) & ADDR_ALL));
     }
 
     public static String convertStreamToString(InputStream is) {

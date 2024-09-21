@@ -109,23 +109,23 @@ public class Prefs {
 
     public static int getInterfaces(Context context) {
         try {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences pref = context.getSharedPreferences("pref_kv",Context.MODE_PRIVATE);
             String prefInterfaces = pref.getString(PREF_INTERFACES, "0");
             if (prefInterfaces.equals("0")) {
-                return 32;
+                return Net.ADDR_WIFI_ALL;
             }
             if (prefInterfaces.equals(DEFAULT_HOMEDIR)) {
-                return 2;
+                return Net.ADDR_ETH;
             }
             if (prefInterfaces.equals("2")) {
-                return 4;
+                return Net.ADDR_MOBILE;
             }
             if (prefInterfaces.equals("3")) {
-                return 8;
+                return Net.ADDR_LOCAL;
             }
-            return prefInterfaces.equals("4") ? 16 : 32;
+            return prefInterfaces.equals("4") ? Net.ADDR_BLUETOOH_PAN : Net.ADDR_WIFI_ALL;
         } catch (Exception e) {
-            return 32;
+            return Net.ADDR_WIFI_ALL;
         }
     }
 
