@@ -40,11 +40,54 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.PrefsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.FileDialog"
+            android:exported="true"
+            android:label="@string/app_name_file_dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".intent.WebdavService"
             android:enabled="true"
+            android:exported="true"
+            android:permission="TODO" />
 
-            android:exported="true" />
+        <receiver
+            android:name=".intent.WidgetWebDavProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widgetutilprovider" />
+        </receiver>
+        <receiver
+            android:name=".intent.WebDavServerReceiver"
+            android:exported="true"
+            android:icon="@drawable/on"
+            android:label="WebDav Server Pro"
+            android:permission="TODO">
+            <intent-filter>
+                <action android:name="com.xinglan.webdavserver.widget.action.CHANGE_STATUS" />
+                <action android:name="com.xinglan.webdavserver.widget.action.UPDATE_STATUS" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widgetutilprovider" />
+        </receiver>
+
+
     </application>
 
 </manifest>
