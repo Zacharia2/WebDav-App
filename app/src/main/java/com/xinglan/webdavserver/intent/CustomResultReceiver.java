@@ -7,10 +7,6 @@ import android.os.ResultReceiver;
 public class CustomResultReceiver extends ResultReceiver {
     private Receiver mReceiverPrivate;
 
-    public interface Receiver {
-        void onReceiveResult(int i, Bundle bundle);
-    }
-
     public CustomResultReceiver(Handler handler) {
         super(handler);
     }
@@ -24,5 +20,9 @@ public class CustomResultReceiver extends ResultReceiver {
         if (this.mReceiverPrivate != null) {
             this.mReceiverPrivate.onReceiveResult(resultCode, resultData);
         }
+    }
+
+    public interface Receiver {
+        void onReceiveResult(int i, Bundle bundle);
     }
 }

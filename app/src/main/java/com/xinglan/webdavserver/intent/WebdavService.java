@@ -39,22 +39,6 @@ public class WebdavService extends Service {
         return server;
     }
 
-    public static class WebdavBinder extends Binder {
-        public String configurationString;
-
-        public WebdavBinder() {
-            this.configurationString = null;
-        }
-
-        public BerryUtil getServer() {
-            return WebdavService.server;
-        }
-
-        public void setServer(BerryUtil par) {
-            WebdavService.server = par;
-        }
-    }
-
     public static void updateWidgets(Context context, String updateAction, boolean startedFromWidget, boolean startOk) {
         Intent intentUpdate = new Intent();
         intentUpdate.setAction(updateAction);
@@ -130,7 +114,7 @@ public class WebdavService extends Service {
                 getScreenLock(tag);
                 break;
         }
-        showNotification(className, notificationTextId, notificationIconId, notificationStartedTitleId, notificationStartedTextId, ipDetail, foreground);
+//        showNotification(className, notificationTextId, notificationIconId, notificationStartedTitleId, notificationStartedTextId, ipDetail, foreground);
     }
 
     @Override // android.app.Service
@@ -143,6 +127,7 @@ public class WebdavService extends Service {
         return this.mBinder;
     }
 
+    //TODO
     private void showNotification(String className, int notificationTextId, int notificationIconId, int notificationStartedTitleId, int notificationStartedTextId, String ipDetail, boolean startForeground) {
         Notification notification;
         Intent startIntent = new Intent();
@@ -201,5 +186,21 @@ public class WebdavService extends Service {
         }
         handleStart(intent, flags, startId, R.string.service_started, R.drawable.on, R.string.notification_started_title, R.string.notification_started_text);
         return Service.START_REDELIVER_INTENT;
+    }
+
+    public static class WebdavBinder extends Binder {
+        public String configurationString;
+
+        public WebdavBinder() {
+            this.configurationString = null;
+        }
+
+        public BerryUtil getServer() {
+            return WebdavService.server;
+        }
+
+        public void setServer(BerryUtil par) {
+            WebdavService.server = par;
+        }
     }
 }
