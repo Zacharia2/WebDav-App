@@ -43,18 +43,18 @@ public class Prefs {
     public static String getUserName(Context context) {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-            return pref.getString(PREF_USERNAME, "webdav");
+            return pref.getString(PREF_USERNAME, DEFAULT_USERNAME);
         } catch (Exception e) {
-            return "webdav";
+            return DEFAULT_USERNAME;
         }
     }
 
     public static String getUserPass(Context context) {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-            return pref.getString(PREF_USERPASS, "webdav");
+            return pref.getString(PREF_USERPASS, DEFAULT_USERPASS);
         } catch (Exception e) {
-            return "webdav";
+            return DEFAULT_USERPASS;
         }
     }
 
@@ -102,17 +102,17 @@ public class Prefs {
     public static boolean getPasswordEnabled(Context context) {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-            return pref.getBoolean(PREF_PASSWORD, false);
+            return pref.getBoolean(PREF_PASSWORD, DEFAULT_PASSWORD);
         } catch (Exception e) {
-            return false;
+            return DEFAULT_PASSWORD;
         }
     }
 
     public static int getInterfaces(Context context) {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-            String prefInterfaces = pref.getString(PREF_INTERFACES, "0");
-            if (prefInterfaces.equals("0")) {
+            String prefInterfaces = pref.getString(PREF_INTERFACES, DEFAULT_INTERFACES);
+            if (prefInterfaces.equals(DEFAULT_INTERFACES)) {
                 return Net.ADDR_WIFI_ALL;
             }
             if (prefInterfaces.equals(DEFAULT_HOMEDIR)) {
@@ -133,8 +133,8 @@ public class Prefs {
     public static int getLock(Context context) {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-            String prefInterfaces = pref.getString(PREF_LOCK, "0");
-            if (prefInterfaces.equals("0")) {
+            String prefInterfaces = pref.getString(PREF_LOCK, DEFAULT_LOCK);
+            if (prefInterfaces.equals(DEFAULT_LOCK)) {
                 return 0;
             }
             if (prefInterfaces.equals(DEFAULT_HOMEDIR)) {
@@ -149,9 +149,9 @@ public class Prefs {
     public static boolean getForeground(Context context) {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-            return pref.getBoolean(PREF_FOREGROUND, true);
+            return pref.getBoolean(PREF_FOREGROUND, DEFAULT_FOREGROUND);
         } catch (Exception e) {
-            return true;
+            return DEFAULT_FOREGROUND;
         }
     }
 
@@ -184,9 +184,9 @@ public class Prefs {
     public static boolean getShowCredentials(Context context) {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-            return pref.getBoolean(PREF_SHOWCREDENTIALS, true);
+            return pref.getBoolean(PREF_SHOWCREDENTIALS, DEFAULT_SHOWCREDENTIALS);
         } catch (Exception e) {
-            return true;
+            return DEFAULT_SHOWCREDENTIALS;
         }
     }
 }
