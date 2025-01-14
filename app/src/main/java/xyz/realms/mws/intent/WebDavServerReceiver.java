@@ -4,10 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import xyz.realms.mws.ui.MainActivity;
 import xyz.realms.mws.MwsApp;
 import xyz.realms.mws.corefunc.BerryUtil;
 import xyz.realms.mws.corefunc.Helper;
+import xyz.realms.mws.ui.MainActivity;
 
 public class WebDavServerReceiver extends BroadcastReceiver {
     @Override

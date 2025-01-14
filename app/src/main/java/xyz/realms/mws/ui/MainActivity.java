@@ -19,11 +19,12 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import xyz.realms.mws.R;
 import xyz.realms.mws.MwsApp;
+import xyz.realms.mws.R;
 import xyz.realms.mws.corefunc.BerryUtil;
 import xyz.realms.mws.corefunc.Helper;
 import xyz.realms.mws.corefunc.Net;
@@ -139,8 +140,9 @@ public class MainActivity extends Activity implements CustomResultReceiver.Recei
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.menu_preference) {
-            Intent intent = new Intent(this, PrefsActivity.class);
-            startActivityForResult(intent, 0);
+            Toast.makeText(this, "点击了首页", Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(MainActivity.this, PrefsActivity.class);
+            startActivity(intent1);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -151,7 +153,7 @@ public class MainActivity extends Activity implements CustomResultReceiver.Recei
         if (keyCode != 82) {
             return super.onKeyDown(keyCode, event);
         }
-        startActivityForResult(new Intent(this, PrefsActivity.class), 0);
+        startActivityForResult(new Intent(this, PrefsActivity.PrefsFragment.class), 0);
         return true;
     }
 

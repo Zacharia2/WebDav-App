@@ -10,9 +10,9 @@ import android.widget.RemoteViews;
 
 import java.util.Objects;
 
-import xyz.realms.mws.ui.MainActivity;
 import xyz.realms.mws.R;
 import xyz.realms.mws.corefunc.BerryUtil;
+import xyz.realms.mws.ui.MainActivity;
 
 public class WidgetWebDavReceiver extends BroadcastReceiver {
     public static final String ChangeStatusAction = "xyz.realms.mws.widget.action.CHANGE_STATUS";

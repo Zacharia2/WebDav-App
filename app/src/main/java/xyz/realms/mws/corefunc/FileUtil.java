@@ -15,7 +15,8 @@ public class FileUtil {
                 if (!externalDirs[0].exists()) {
                     externalDirs[0].mkdirs();
                 }
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         if (externalDirs.length < 2 || externalDirs[1] == null) {
@@ -25,7 +26,8 @@ public class FileUtil {
             if (!externalDirs[1].exists()) {
                 externalDirs[1].mkdirs();
             }
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return externalDirs[1].getPath();
     }
