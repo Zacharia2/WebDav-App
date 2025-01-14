@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.WebdavServer" parent="android:ThemeOverlay.Material.Dark.ActionBar" />
+    <style name="Theme.WebdavServer" parent="android:ThemeOverlay.Material.Dark.ActionBar" >
+        <item name="windowActionBar">true</item>
+    </style>
     <style name="PrefsTheme" parent="@android:style/Theme.Black" />
     <style name="AlertDialogTheme" parent="@android:style/Theme.Translucent.NoTitleBar" />
 </resources>

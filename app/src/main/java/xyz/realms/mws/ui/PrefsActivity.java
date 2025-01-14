@@ -1,13 +1,13 @@
 package xyz.realms.mws.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import xyz.realms.mws.MwsApp;
 import xyz.realms.mws.R;
@@ -15,18 +15,17 @@ import xyz.realms.mws.corefunc.Helper;
 import xyz.realms.mws.corefunc.Prefs;
 
 
-public class PrefsActivity extends Activity {
+public class PrefsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getFragmentManager().beginTransaction().replace(
-                android.R.id.content, new PrefsFragment()
-        ).commit();
-
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(android.R.id.content, new PrefsFragment())
+                .commit();
     }
 
-    public static class PrefsFragment extends PreferenceFragment {
+    public static class PrefsFragment extends PreferenceFragmentCompat {
         public static final int PREFERENCE_ACTIVITY = 0;
         public static final int PREF_RESULT_NONE = 1;
         public static final int PREF_RESULT_RESET = 2;
@@ -97,6 +96,11 @@ public class PrefsActivity extends Activity {
             customFolderPref.setEnabled(Prefs.isHomeDirCustomDir(MwsApp.getAppContext()));
 
             addPreferencesFromResource(R.xml.preference);
+        }
+
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            setPreferencesFromResource(R.xml.preference, rootKey);
         }
 
         private void setPreferenceChangeListener(String key, Preference.OnPreferenceChangeListener listener) {
