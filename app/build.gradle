@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace 'com.xinglan.webdavserver'
+    namespace 'xyz.realms.mws'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.xinglan.webdavserver"
+        applicationId "xyz.realms.mws"
         minSdk 24
-        targetSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 

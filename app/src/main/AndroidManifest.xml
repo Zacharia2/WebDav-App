@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".activity.WebdavServerApp"
+        android:name=".MwsApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -33,7 +33,7 @@
         <!--            </intent-filter>-->
         <!--        </activity>-->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,14 +41,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.PrefsActivity"
+            android:name=".ui.PrefsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.FileDialog"
+            android:name=".ui.FileDialog"
             android:exported="true"
             android:label="@string/app_name_file_dialog">
             <intent-filter>
@@ -79,8 +79,8 @@
             android:label="WebDav Server Pro"
             android:permission="TODO">
             <intent-filter>
-                <action android:name="com.xinglan.webdavserver.widget.action.CHANGE_STATUS" />
-                <action android:name="com.xinglan.webdavserver.widget.action.UPDATE_STATUS" />
+                <action android:name="mws.widget.action.CHANGE_STATUS" />
+                <action android:name="mws.widget.action.UPDATE_STATUS" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"

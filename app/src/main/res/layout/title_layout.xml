@@ -14,7 +14,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <com.xinglan.webdavserver.widget.viewflow.TitleFlowIndicator
+        <xyz.realms.mws.ui.widget.viewflow.TitleFlowIndicator
             android:id="@+id/view_flow_indic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             app:titlePadding="10dp" />
     </LinearLayout>
 
-    <com.xinglan.webdavserver.widget.viewflow.ViewFlow
+    <xyz.realms.mws.ui.widget.viewflow.ViewFlow
         android:id="@+id/view_flow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
