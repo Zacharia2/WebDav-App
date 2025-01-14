@@ -15,7 +15,7 @@ public class CustomResultReceiver extends ResultReceiver {
         this.mReceiverPrivate = receiver;
     }
 
-    @Override // android.os.ResultReceiver
+    @Override
     protected void onReceiveResult(int resultCode, Bundle resultData) {
         if (this.mReceiverPrivate != null) {
             this.mReceiverPrivate.onReceiveResult(resultCode, resultData);

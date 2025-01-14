@@ -20,47 +20,40 @@ public class WebdavAdapter extends BaseAdapter implements TitleProvider {
     private int res2;
 
     public WebdavAdapter(Context context, int inflateRes1, int inflateRes2) {
-        this.res1 = 0;
-        this.res2 = 2;
         this.res1 = inflateRes1;
         this.res2 = inflateRes2;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.context = context;
     }
 
-    @Override // android.widget.BaseAdapter, android.widget.Adapter
-    public int getItemViewType(int position) {
+    @Override
+    public int getViewTypeCount() {
+        return VIEW_MAX_COUNT;
+    }
+
+    @Override
+    public int getCount() {
+        return VIEW_MAX_COUNT;
+    }
+
+    @Override
+    public Object getItem(int position) {
         return position;
     }
 
-    @Override // android.widget.BaseAdapter, android.widget.Adapter
-    public int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override // android.widget.Adapter
-    public int getCount() {
-        return 2;
-    }
-
-    @Override // android.widget.Adapter
-    public Object getItem(int position) {
-        return Integer.valueOf(position);
-    }
-
-    @Override // android.widget.Adapter
+    @Override
     public long getItemId(int position) {
         return position;
     }
 
-    @Override // android.widget.Adapter
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         int view = getItemViewType(position);
         if (convertView == null) {
             switch (view) {
-                case 0:
+                case VIEW1:
                     return this.mInflater.inflate(this.res1, null);
-                case 1:
+                case VIEW2:
                     return this.mInflater.inflate(this.res2, null);
                 default:
                     return convertView;
@@ -69,7 +62,7 @@ public class WebdavAdapter extends BaseAdapter implements TitleProvider {
         return convertView;
     }
 
-    @Override // org.taptwo.android.widget.TitleProvider
+    @Override
     public String getTitle(int position) {
         return this.context.getString(this.names[position]);
     }

@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import xyz.realms.mws.MwsApp;
 import xyz.realms.mws.R;
-import xyz.realms.mws.corefunc.FileUtil;
+import xyz.realms.mws.corefunc.Helper;
 import xyz.realms.mws.corefunc.Prefs;
 
 
@@ -55,7 +55,7 @@ public class PrefsActivity extends Activity {
             super.onCreate(savedInstanceState);
 
             ListPreference homeDirPref = (ListPreference) findPreference(Prefs.PREF_HOMEDIR);
-            if (FileUtil.GetSecondaryPrivateDirectory(MwsApp.getAppContext()) != null) {
+            if (Helper.GetSecondaryPrivateDirectory(MwsApp.getAppContext()) != null) {
                 mEntries = getResources().getStringArray(R.array.home_dir_api19);
                 mEntryValues = getResources().getStringArray(R.array.home_dir_values_api19);
             } else {

@@ -51,7 +51,7 @@ public class FileDialog extends ListActivity {
     private boolean showFoldersOnly = false;
     private final HashMap<String, Integer> lastPositions = new HashMap<>();
 
-    @Override // android.app.Activity
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setResult(0, getIntent());
@@ -61,7 +61,6 @@ public class FileDialog extends ListActivity {
         this.inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         this.selectButton = findViewById(R.id.fdButtonSelect);
         this.selectButton.setEnabled(false);
-        // android.view.View.OnClickListener
         this.selectButton.setOnClickListener(v -> {
             if (FileDialog.this.selectedFile != null) {
                 FileDialog.this.getIntent().putExtra(FileDialog.RESULT_PATH, FileDialog.this.selectedFile.getPath());
@@ -70,7 +69,7 @@ public class FileDialog extends ListActivity {
             }
         });
         Button newButton = findViewById(R.id.fdButtonNew);
-        // android.view.View.OnClickListener
+
         newButton.setOnClickListener(v -> {
             FileDialog.this.setCreateVisible(v);
             FileDialog.this.mFileName.setText("");
@@ -87,7 +86,7 @@ public class FileDialog extends ListActivity {
         this.layoutCreate = findViewById(R.id.fdLinearLayoutCreate);
         this.layoutCreate.setVisibility(View.GONE);
         Button cancelButton = findViewById(R.id.fdButtonCancel);
-        // android.view.View.OnClickListener
+
         cancelButton.setOnClickListener(v -> {
             FileDialog.this.setSelectVisible(v);
             if (FileDialog.this.canSelectDir) {
@@ -95,7 +94,7 @@ public class FileDialog extends ListActivity {
             }
         });
         Button createButton = findViewById(R.id.fdButtonCreate);
-        // android.view.View.OnClickListener
+
         createButton.setOnClickListener(v -> {
             if (FileDialog.this.mFileName.getText().length() > 0) {
                 if (!FileDialog.this.showFoldersOnly || !FileDialog.this.canSelectDir) {
@@ -117,7 +116,7 @@ public class FileDialog extends ListActivity {
                     FileDialog.this.finish();
                     return;
                 }
-                // android.content.DialogInterface.OnClickListener
+
                 new AlertDialog.Builder(FileDialog.this).setIcon(R.mipmap.icon).setTitle("[" + FileDialog.this.mFileName.getText() + "] " + FileDialog.this.getText(R.string.cant_create_folder)).setPositiveButton(ExternallyRolledFileAppender.OK, (dialog, which) -> {
                 }).show();
             }
@@ -240,9 +239,11 @@ public class FileDialog extends ListActivity {
                 }
                 return;
             }
-            // android.content.DialogInterface.OnClickListener
-            new AlertDialog.Builder(this).setIcon(R.mipmap.icon).setTitle("[" + file.getName() + "] " + getText(R.string.cant_read_folder)).setPositiveButton(ExternallyRolledFileAppender.OK, (dialog, which) -> {
-            }).show();
+            new AlertDialog.Builder(this)
+                    .setIcon(R.mipmap.icon)
+                    .setTitle("[" + file.getName() + "] " + getText(R.string.cant_read_folder))
+                    .setPositiveButton(ExternallyRolledFileAppender.OK, (dialog, which) -> {})
+                    .show();
             return;
         }
         this.selectedFile = file;
@@ -250,7 +251,7 @@ public class FileDialog extends ListActivity {
         this.selectButton.setEnabled(true);
     }
 
-    @Override // android.app.Activity, android.view.KeyEvent.Callback
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == 4) {
             this.selectButton.setEnabled(false);

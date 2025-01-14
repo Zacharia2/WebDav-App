@@ -163,33 +163,23 @@ public class Net {
     }
 
     public static String generateRandomPassword() {
-        String password = "";
+        StringBuilder password = new StringBuilder();
         Random generator = new Random();
         for (int i = 0; i < 6; i++) {
             int r = generator.nextInt("abcdefgijkmnopqrstwxyzABCDEFGHJKLMNPQRSTWXYZ123456789".length());
-            password = password + "abcdefgijkmnopqrstwxyzABCDEFGHJKLMNPQRSTWXYZ123456789".charAt(r);
+            password.append("abcdefgijkmnopqrstwxyzABCDEFGHJKLMNPQRSTWXYZ123456789".charAt(r));
         }
-        return password;
+        return password.toString();
     }
 
     public static void showAlert(Context context, int ok, int cancel, int title, int message, DialogInterface.OnClickListener listener, DialogInterface.OnCancelListener listenerCancel) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
-        alertDialog.setPositiveButton(ok, listener != null ? listener : new DialogInterface.OnClickListener() {
-            @Override // android.content.DialogInterface.OnClickListener
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        alertDialog.setPositiveButton(ok, listener != null ? listener : (dialog, which) -> dialog.dismiss());
         if (cancel != -1) {
             if (listener == null) {
-                listener = new DialogInterface.OnClickListener() {
-                    @Override // android.content.DialogInterface.OnClickListener
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                };
+                listener = (dialog, which) -> dialog.dismiss();
             }
             alertDialog.setNegativeButton(cancel, listener);
         }

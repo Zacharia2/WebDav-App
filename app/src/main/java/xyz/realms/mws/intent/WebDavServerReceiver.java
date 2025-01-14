@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import xyz.realms.mws.MwsApp;
-import xyz.realms.mws.corefunc.BerryUtil;
 import xyz.realms.mws.corefunc.Helper;
 import xyz.realms.mws.ui.MainActivity;
 
@@ -18,7 +17,7 @@ public class WebDavServerReceiver extends BroadcastReceiver {
 
     public void onReceiveImplementation(Context context, Intent intent, Class<?> activity, String widgetUpdateAction) {
         try {
-            BerryUtil server = WebdavService.getServer();
+            Helper server = WebdavService.getServer();
             if (server == null) {
                 boolean startedFromWidget = intent.getBooleanExtra("startedFromWidget", false);
                 boolean result = Helper.StartService(MwsApp.getAppContext(), activity, null, widgetUpdateAction, startedFromWidget);
@@ -44,7 +43,7 @@ public class WebDavServerReceiver extends BroadcastReceiver {
     public void onReceiveImplementation(Context context, Intent intent, String widgetUpdateAction) {
         try {
             Intent intentServer = new Intent(MwsApp.getAppContext(), WebdavService.class);
-            BerryUtil server = WebdavService.getServer();
+            Helper server = WebdavService.getServer();
             if (server != null) {
                 if (server.isStarted()) {
                     server.stopBerry();

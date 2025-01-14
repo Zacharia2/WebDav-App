@@ -25,7 +25,6 @@ import androidx.annotation.NonNull;
 
 import xyz.realms.mws.MwsApp;
 import xyz.realms.mws.R;
-import xyz.realms.mws.corefunc.BerryUtil;
 import xyz.realms.mws.corefunc.Helper;
 import xyz.realms.mws.corefunc.Net;
 import xyz.realms.mws.intent.CustomResultReceiver;
@@ -36,13 +35,13 @@ import xyz.realms.mws.ui.widget.viewflow.ViewFlow;
 
 public class MainActivity extends Activity implements CustomResultReceiver.Receiver {
     private final ServiceConnection mConnection = new ServiceConnection() {
-        @Override // android.content.ServiceConnection
+        @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
             WebdavService.WebdavBinder serviceBinder = (WebdavService.WebdavBinder) service;
             MainActivity.this.setViewsStarted(serviceBinder.configurationString);
         }
 
-        @Override // android.content.ServiceConnection
+        @Override
         public void onServiceDisconnected(ComponentName className) {
             MainActivity.this.setViewsStopped();
         }
@@ -64,7 +63,7 @@ public class MainActivity extends Activity implements CustomResultReceiver.Recei
             Net.showAlert(this, R.string.ok, -1, R.string.app_name, R.string.notConnect, null, null);
         }
         setContentView(R.layout.title_layout);
-        BerryUtil.init();
+        Helper.initBerry();
         LinearLayout bg = findViewById(R.id.titleParent);
         bg.getBackground().setDither(true);
         this.viewFlow = findViewById(R.id.view_flow);
@@ -167,7 +166,7 @@ public class MainActivity extends Activity implements CustomResultReceiver.Recei
         }
     }
 
-    @Override // CustomResultReceiver.Receiver
+    @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         if (resultCode == 0) {
             Net.showAlert(this, R.string.ok, -1, R.string.app_name, R.string.errorRunServer, null, null);
@@ -204,6 +203,7 @@ public class MainActivity extends Activity implements CustomResultReceiver.Recei
 
 
     private void setViewsStarted(String connectString) {
+//        不知道为什么就显示一行。
         ImageView button = findViewById(R.id.imageView1);
         TextView textStartStop = findViewById(R.id.textView3);
         TextView text2 = findViewById(R.id.textView2);

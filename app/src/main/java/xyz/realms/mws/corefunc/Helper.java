@@ -3,12 +3,21 @@ package xyz.realms.mws.corefunc;
 import android.content.Context;
 import android.content.Intent;
 
+import com.bradmcevoy.http.HttpManager;
 import com.bradmcevoy.http.SecurityManager;
+import com.bradmcevoy.http.http11.Http11ResponseHandler;
+import com.ettrema.berry.Berry;
+import com.ettrema.berry.simple.SimpletonServer;
+import com.ettrema.common.Service;
+import com.ettrema.http.fs.FileSystemResourceFactory;
 import com.ettrema.http.fs.NullSecurityManager;
+import com.ettrema.http.fs.SimpleLockManager;
 import com.ettrema.http.fs.SimpleSecurityManager;
 
 import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,9 +26,11 @@ import xyz.realms.mws.intent.CustomResultReceiver;
 import xyz.realms.mws.intent.WebdavService;
 
 public class Helper {
-    public static BerryUtil StartServer(Context context, Class<?> pThis) throws Exception {
+    private Berry berry = null;
+
+    public static Helper StartServer(Context context, Class<?> pThis) throws Exception {
         SecurityManager nullSecurityManager;
-        BerryUtil server = null;
+        Helper server = null;
         List<String> addresses = Net.getIpAddress(context, Prefs.getInterfaces(context));
         if (!addresses.isEmpty()) {
             String address = addresses.get(0);
@@ -31,7 +42,7 @@ public class Helper {
             int lockMode = Prefs.getLock(context);
             boolean foreground = Prefs.getForeground(context);
             boolean credentials = Prefs.getShowCredentials(context);
-            server = new BerryUtil();
+            server = new Helper();
             HashMap<String, String> nameAndPass = new HashMap<>();
             nameAndPass.put(userName, userPass);
             if (passwordEnabled) {
@@ -112,9 +123,9 @@ public class Helper {
         return false;
     }
 
-    public static BerryUtil StartServerOnly(String ip, int port, String homeDir, boolean passwordEnabled, String userName, String userPass) throws Exception {
+    public static Helper StartServerOnly(String ip, int port, String homeDir, boolean passwordEnabled, String userName, String userPass) throws Exception {
         SecurityManager nullSecurityManager;
-        BerryUtil server = new BerryUtil();
+        Helper server = new Helper();
         HashMap<String, String> nameAndPass = new HashMap<>();
         nameAndPass.put(userName, userPass);
         if (passwordEnabled) {
@@ -126,5 +137,66 @@ public class Helper {
             return null;
         }
         return server;
+    }
+
+    public static String GetSecondaryPrivateDirectory(Context context) {
+        File[] externalDirs;
+        if ((externalDirs = context.getExternalFilesDirs(null)) == null) {
+            return null;
+        }
+        if (externalDirs.length >= 1 && externalDirs[0] != null) {
+            try {
+                if (!externalDirs[0].exists()) {
+                    externalDirs[0].mkdirs();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (externalDirs.length < 2 || externalDirs[1] == null) {
+            return null;
+        }
+        try {
+            if (!externalDirs[1].exists()) {
+                externalDirs[1].mkdirs();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return externalDirs[1].getPath();
+    }
+
+    public static void initBerry() {
+        System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
+    }
+
+    public boolean isStarted() {
+        return this.berry != null;
+    }
+
+    public boolean startBerry(int port, String homeFolder, SecurityManager securityManager) {
+        try {
+            FileSystemResourceFactory resourceFactory = new FileSystemResourceFactory(new File(homeFolder), securityManager, Prefs.DEFAULT_CUSTOMFOLDER);
+            resourceFactory.setLockManager(new SimpleLockManager());
+            HttpManager httpManager = new HttpManager(resourceFactory);
+            List<Service> httpAdapters = new ArrayList<>();
+            Http11ResponseHandler responseHandler = httpManager.getResponseHandler();
+            SimpletonServer simpletonServer = new SimpletonServer(responseHandler);
+            simpletonServer.setHttpPort(port);
+            httpAdapters.add(simpletonServer);
+            this.berry = new Berry(httpManager, httpAdapters);
+            this.berry.start();
+            return true;
+        } catch (Exception e) {
+            this.berry = null;
+            return false;
+        }
+    }
+
+    public void stopBerry() {
+        if (isStarted()) {
+            this.berry.stop();
+        }
+        this.berry = null;
     }
 }

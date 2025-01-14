@@ -14,7 +14,6 @@ import android.os.PowerManager;
 import android.os.ResultReceiver;
 
 import xyz.realms.mws.R;
-import xyz.realms.mws.corefunc.BerryUtil;
 import xyz.realms.mws.corefunc.Helper;
 
 public class WebdavService extends Service {
@@ -22,20 +21,19 @@ public class WebdavService extends Service {
     public static final int WIFI_MODE_FULL = 1;
     public static final int WIFI_MODE_FULL_HIGH_PERF = 2;
     private static final int NOTIFICATION_STARTED_ID = 1;
-    private static BerryUtil server = null;
-    protected IBinder mBinder;
+    private static Helper server = null;
+    protected WebdavBinder mBinder;
     private PowerManager.WakeLock wakeLock;
     private NotificationManager notifyManager = null;
     private WifiManager.WifiLock wifiLock = null;
 
     public WebdavService() {
-        this.mBinder = null;
         this.wakeLock = null;
         this.mBinder = createServiceBinder();
         this.wakeLock = null;
     }
 
-    public static BerryUtil getServer() {
+    public static Helper getServer() {
         return server;
     }
 
@@ -48,7 +46,7 @@ public class WebdavService extends Service {
         context.sendBroadcast(intentUpdate);
     }
 
-    protected IBinder createServiceBinder() {
+    protected WebdavBinder createServiceBinder() {
         return new WebdavService.WebdavBinder();
     }
 
@@ -83,9 +81,10 @@ public class WebdavService extends Service {
 
     protected void getScreenLock(String tag) {
         if (tag != null) {
+            long minutes = 60 * 1000L;
             PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
             this.wakeLock = pm.newWakeLock(6, tag);
-            this.wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/);
+            this.wakeLock.acquire(10 * minutes);
         }
     }
 
@@ -117,12 +116,7 @@ public class WebdavService extends Service {
 //        showNotification(className, notificationTextId, notificationIconId, notificationStartedTitleId, notificationStartedTextId, ipDetail, foreground);
     }
 
-    @Override // android.app.Service
-    public boolean onUnbind(Intent intent) {
-        return super.onUnbind(intent);
-    }
-
-    @Override // android.app.Service
+    @Override
     public IBinder onBind(Intent intent) {
         return this.mBinder;
     }
@@ -143,14 +137,14 @@ public class WebdavService extends Service {
         }
     }
 
-    @Override // android.app.Service
+    @Override
     public void onStart(Intent intent, int startId) {
         onStartCommand(intent, 0, startId);
     }
 
-    @Override // android.app.Service
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        ((WebdavService.WebdavBinder) this.mBinder).configurationString = intent.getStringExtra("Data");
+        this.mBinder.configurationString = intent.getStringExtra("Data");
         String ip = intent.getStringExtra("sticky_ip");
         int port = intent.getIntExtra("sticky_port", 0);
         String homeDir = intent.getStringExtra("sticky_homeDir");
@@ -189,17 +183,14 @@ public class WebdavService extends Service {
     }
 
     public static class WebdavBinder extends Binder {
+
         public String configurationString;
 
-        public WebdavBinder() {
-            this.configurationString = null;
-        }
-
-        public BerryUtil getServer() {
+        public Helper getServer() {
             return WebdavService.server;
         }
 
-        public void setServer(BerryUtil par) {
+        public void setServer(Helper par) {
             WebdavService.server = par;
         }
     }

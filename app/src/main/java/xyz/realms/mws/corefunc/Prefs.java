@@ -71,7 +71,7 @@ public class Prefs {
             } else if (prefHomeDir.equals("3")) {
                 ext = getCustomFolder(context);
             } else if (prefHomeDir.equals("4")) {
-                ext = FileUtil.GetSecondaryPrivateDirectory(context);
+                ext = Helper.GetSecondaryPrivateDirectory(context);
                 if (ext == null) {
                     ext = String.valueOf(Environment.getExternalStorageDirectory());
                 }

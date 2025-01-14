@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import xyz.realms.mws.R;
-import xyz.realms.mws.corefunc.BerryUtil;
+import xyz.realms.mws.corefunc.Helper;
 
 public class WidgetWebDavProvider extends AppWidgetProvider {
     public static PendingIntent buildButtonPendingIntent(Context context, int[] appWidgetIds, String sendAction) {
@@ -33,7 +33,7 @@ public class WidgetWebDavProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        BerryUtil server = WebdavService.getServer();
+        Helper server = WebdavService.getServer();
         int image = server != null ? R.drawable.on : R.drawable.off;
         onUpdateImplementation(context, appWidgetManager, appWidgetIds, WidgetWebDavProvider.class, image, WidgetWebDavReceiver.ChangeStatusAction);
     }

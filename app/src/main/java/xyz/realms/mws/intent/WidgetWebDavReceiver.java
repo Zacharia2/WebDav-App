@@ -11,17 +11,17 @@ import android.widget.RemoteViews;
 import java.util.Objects;
 
 import xyz.realms.mws.R;
-import xyz.realms.mws.corefunc.BerryUtil;
+import xyz.realms.mws.corefunc.Helper;
 import xyz.realms.mws.ui.MainActivity;
 
 public class WidgetWebDavReceiver extends BroadcastReceiver {
     public static final String ChangeStatusAction = "xyz.realms.mws.widget.action.CHANGE_STATUS";
     public static final String UpdateStatusAction = "xyz.realms.mws.widget.action.UPDATE_STATUS";
 
-    @Override // android.content.BroadcastReceiver
+    @Override
     public void onReceive(Context context, Intent intent) {
         int image = R.drawable.on;
-        BerryUtil server = WebdavService.getServer();
+        Helper server = WebdavService.getServer();
         if (Objects.equals(intent.getAction(), ChangeStatusAction)) {
             if (server != null) {
                 image = R.drawable.off;
