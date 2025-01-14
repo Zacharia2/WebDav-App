@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package xyz.realms.mws.ui.widget.viewflow;
+package xyz.realms.mws.ui.viewflow;
 
 import android.content.Context;
 import android.content.res.TypedArray;

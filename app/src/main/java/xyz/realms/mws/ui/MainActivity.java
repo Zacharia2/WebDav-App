@@ -30,8 +30,8 @@ import xyz.realms.mws.corefunc.Net;
 import xyz.realms.mws.intent.CustomResultReceiver;
 import xyz.realms.mws.intent.WebdavService;
 import xyz.realms.mws.intent.WidgetWebDavReceiver;
-import xyz.realms.mws.ui.widget.viewflow.TitleFlowIndicator;
-import xyz.realms.mws.ui.widget.viewflow.ViewFlow;
+import xyz.realms.mws.ui.viewflow.TitleFlowIndicator;
+import xyz.realms.mws.ui.viewflow.ViewFlow;
 
 public class MainActivity extends Activity implements CustomResultReceiver.Receiver {
     private final ServiceConnection mConnection = new ServiceConnection() {

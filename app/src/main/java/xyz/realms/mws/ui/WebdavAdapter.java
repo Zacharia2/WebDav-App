@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import xyz.realms.mws.R;
-import xyz.realms.mws.ui.widget.viewflow.TitleProvider;
+import xyz.realms.mws.ui.viewflow.TitleProvider;
 
 public class WebdavAdapter extends BaseAdapter implements TitleProvider {
     private static final int VIEW1 = 0;
