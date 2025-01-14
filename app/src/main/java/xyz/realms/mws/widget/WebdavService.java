@@ -1,4 +1,4 @@
-package xyz.realms.mws.intent;
+package xyz.realms.mws.widget;
 
 import android.app.Notification;
 import android.app.NotificationManager;

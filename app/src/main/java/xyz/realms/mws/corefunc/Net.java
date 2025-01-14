@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -131,13 +130,6 @@ public class Net {
                     } else {
                         writer.write(buffer, 0, n);
                     }
-                }
-            } catch (UnsupportedEncodingException e2) {
-                e2.printStackTrace();
-                try {
-                    is.close();
-                } catch (IOException e3) {
-                    e3.printStackTrace();
                 }
             } catch (IOException e4) {
                 e4.printStackTrace();

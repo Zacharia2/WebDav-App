@@ -62,21 +62,28 @@ public class Prefs {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME, Context.MODE_PRIVATE);
             String prefHomeDir = pref.getString(PREF_HOMEDIR, DEFAULT_HOMEDIR);
-            if (prefHomeDir.equals(DEFAULT_HOMEDIR)) {
-                ext = String.valueOf(Environment.getExternalStorageDirectory());
-            } else if (prefHomeDir.equals("0")) {
-                ext = DEFAULT_CUSTOMFOLDER;
-            } else if (prefHomeDir.equals("2")) {
-                ext = String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM));
-            } else if (prefHomeDir.equals("3")) {
-                ext = getCustomFolder(context);
-            } else if (prefHomeDir.equals("4")) {
-                ext = Helper.GetSecondaryPrivateDirectory(context);
-                if (ext == null) {
+            switch (prefHomeDir) {
+                case DEFAULT_HOMEDIR:
                     ext = String.valueOf(Environment.getExternalStorageDirectory());
-                }
-            } else {
-                ext = DEFAULT_CUSTOMFOLDER;
+                    break;
+                case "0":
+                    ext = DEFAULT_CUSTOMFOLDER;
+                    break;
+                case "2":
+                    ext = String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM));
+                    break;
+                case "3":
+                    ext = getCustomFolder(context);
+                    break;
+                case "4":
+                    ext = Helper.GetSecondaryPrivateDirectory(context);
+                    if (ext == null) {
+                        ext = String.valueOf(Environment.getExternalStorageDirectory());
+                    }
+                    break;
+                default:
+                    ext = DEFAULT_CUSTOMFOLDER;
+                    break;
             }
             return ext;
         } catch (Exception e) {
@@ -111,17 +118,15 @@ public class Prefs {
         try {
             SharedPreferences pref = context.getSharedPreferences(PREF_FILENAME, Context.MODE_PRIVATE);
             String prefInterfaces = pref.getString(PREF_INTERFACES, DEFAULT_INTERFACES);
-            if (prefInterfaces.equals(DEFAULT_INTERFACES)) {
-                return Net.ADDR_WIFI_ALL;
-            }
-            if (prefInterfaces.equals(DEFAULT_HOMEDIR)) {
-                return Net.ADDR_ETH;
-            }
-            if (prefInterfaces.equals("2")) {
-                return Net.ADDR_MOBILE;
-            }
-            if (prefInterfaces.equals("3")) {
-                return Net.ADDR_LOCAL;
+            switch (prefInterfaces) {
+                case DEFAULT_INTERFACES:
+                    return Net.ADDR_WIFI_ALL;
+                case DEFAULT_HOMEDIR:
+                    return Net.ADDR_ETH;
+                case "2":
+                    return Net.ADDR_MOBILE;
+                case "3":
+                    return Net.ADDR_LOCAL;
             }
             return prefInterfaces.equals("4") ? Net.ADDR_BLUETOOH_PAN : Net.ADDR_WIFI_ALL;
         } catch (Exception e) {

@@ -27,11 +27,11 @@ import xyz.realms.mws.MwsApp;
 import xyz.realms.mws.R;
 import xyz.realms.mws.corefunc.Helper;
 import xyz.realms.mws.corefunc.Net;
-import xyz.realms.mws.intent.CustomResultReceiver;
-import xyz.realms.mws.intent.WebdavService;
-import xyz.realms.mws.intent.WidgetWebDavReceiver;
 import xyz.realms.mws.ui.viewflow.TitleFlowIndicator;
 import xyz.realms.mws.ui.viewflow.ViewFlow;
+import xyz.realms.mws.widget.CustomResultReceiver;
+import xyz.realms.mws.widget.WebDavReceiver;
+import xyz.realms.mws.widget.WebdavService;
 
 public class MainActivity extends Activity implements CustomResultReceiver.Receiver {
     private final ServiceConnection mConnection = new ServiceConnection() {
@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements CustomResultReceiver.Recei
     private CustomResultReceiver mReceiver;
 
     protected String getUpdateWidgetAction() {
-        return WidgetWebDavReceiver.UpdateStatusAction;
+        return WebDavReceiver.UpdateStatusAction;
     }
 
     @Override

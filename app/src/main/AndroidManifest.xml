@@ -37,11 +37,11 @@
             android:label="@string/app_name_file_dialog">
         </activity>
         <service
-            android:name=".intent.WebdavService"
+            android:name=".widget.WebdavService"
             android:enabled="true"
             android:exported="true" />
         <receiver
-            android:name=".intent.WidgetWebDavProvider"
+            android:name=".widget.WebDavWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -51,7 +51,7 @@
                 android:resource="@xml/widgetutilprovider" />
         </receiver>
         <receiver
-            android:name=".intent.WebDavServerReceiver"
+            android:name=".widget.WebDavReceiver"
             android:exported="true"
             android:icon="@drawable/on"
             android:label="WebDav Server Pro">

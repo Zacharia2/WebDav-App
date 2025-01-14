@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import xyz.realms.mws.R;
-import xyz.realms.mws.intent.CustomResultReceiver;
-import xyz.realms.mws.intent.WebdavService;
+import xyz.realms.mws.widget.CustomResultReceiver;
+import xyz.realms.mws.widget.WebdavService;
 
 public class Helper {
     private Berry berry = null;
