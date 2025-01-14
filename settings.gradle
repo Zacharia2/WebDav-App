@@ -23,5 +23,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "WebdavServer"
+rootProject.name = "MWS"
 include ':app'
