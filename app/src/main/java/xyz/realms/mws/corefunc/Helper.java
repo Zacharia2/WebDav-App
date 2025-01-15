@@ -3,30 +3,25 @@ package xyz.realms.mws.corefunc;
 import android.content.Context;
 import android.content.Intent;
 
-import com.bradmcevoy.http.HttpManager;
-import com.bradmcevoy.http.SecurityManager;
-import com.bradmcevoy.http.http11.Http11ResponseHandler;
-import com.ettrema.berry.Berry;
-import com.ettrema.berry.simple.SimpletonServer;
-import com.ettrema.common.Service;
-import com.ettrema.http.fs.FileSystemResourceFactory;
-import com.ettrema.http.fs.NullSecurityManager;
-import com.ettrema.http.fs.SimpleLockManager;
-import com.ettrema.http.fs.SimpleSecurityManager;
-
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import io.milton.config.HttpManagerBuilder;
+import io.milton.http.HttpManager;
+import io.milton.http.SecurityManager;
+import io.milton.http.fs.FileSystemResourceFactory;
+import io.milton.http.fs.NullSecurityManager;
+import io.milton.http.fs.SimpleSecurityManager;
+import io.milton.simpleton.SimpletonServer;
 import xyz.realms.mws.R;
 import xyz.realms.mws.widget.CustomResultReceiver;
 import xyz.realms.mws.widget.WebdavService;
 
 public class Helper {
-    private Berry berry = null;
+    private SimpletonServer simpletonServer = null;
 
     public static Helper StartServer(Context context, Class<?> pThis) throws Exception {
         SecurityManager nullSecurityManager;
@@ -167,36 +162,36 @@ public class Helper {
     }
 
     public static void initBerry() {
+//        不知道设置这个属性有啥用，设不设置都一样呀
         System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
     }
 
     public boolean isStarted() {
-        return this.berry != null;
+        return this.simpletonServer != null;
     }
 
     public boolean startBerry(int port, String homeFolder, SecurityManager securityManager) {
         try {
             FileSystemResourceFactory resourceFactory = new FileSystemResourceFactory(new File(homeFolder), securityManager, Prefs.DEFAULT_CUSTOMFOLDER);
-            resourceFactory.setLockManager(new SimpleLockManager());
-            HttpManager httpManager = new HttpManager(resourceFactory);
-            List<Service> httpAdapters = new ArrayList<>();
-            Http11ResponseHandler responseHandler = httpManager.getResponseHandler();
-            SimpletonServer simpletonServer = new SimpletonServer(responseHandler);
-            simpletonServer.setHttpPort(port);
-            httpAdapters.add(simpletonServer);
-            this.berry = new Berry(httpManager, httpAdapters);
-            this.berry.start();
+            resourceFactory.setAllowDirectoryBrowsing(true);
+            HttpManagerBuilder b = new HttpManagerBuilder();
+            b.setEnableFormAuth(false);
+            b.setResourceFactory(resourceFactory);
+            HttpManager httpManager = b.buildHttpManager();
+            this.simpletonServer = new SimpletonServer(httpManager, b.getOuterWebdavResponseHandler(), 100, 10);
+            this.simpletonServer.setHttpPort(port);
+            this.simpletonServer.start();
             return true;
         } catch (Exception e) {
-            this.berry = null;
+            this.simpletonServer = null;
             return false;
         }
     }
 
     public void stopBerry() {
         if (isStarted()) {
-            this.berry.stop();
+            this.simpletonServer.stop();
         }
-        this.berry = null;
+        this.simpletonServer = null;
     }
 }

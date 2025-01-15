@@ -63,7 +63,6 @@ public class MainActivity extends Activity implements CustomResultReceiver.Recei
             Net.showAlert(this, R.string.ok, -1, R.string.app_name, R.string.notConnect, null, null);
         }
         setContentView(R.layout.title_layout);
-        Helper.initBerry();
         LinearLayout bg = findViewById(R.id.titleParent);
         bg.getBackground().setDither(true);
         this.viewFlow = findViewById(R.id.view_flow);
